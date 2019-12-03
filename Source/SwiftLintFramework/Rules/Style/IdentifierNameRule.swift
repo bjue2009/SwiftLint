@@ -119,6 +119,9 @@ public struct IdentifierNameRule: ASTRule, ConfigurationProviderRule {
 private extension String {
     var isViolatingCase: Bool {
         let firstCharacter = String(self[startIndex])
+        guard configuration.allowedSymbols.contains(firstCharacter) else {
+            return false
+        }
         guard firstCharacter.isUppercase() else {
             return false
         }
